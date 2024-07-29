@@ -9,7 +9,7 @@ export function NftSection() {
   return (
     <>
       {value.projectItems.length === 0 && (
-        <div className="cart-empty">Sorry! Your Favourites is empty</div>
+        <div className="cart-empty">Sorry! You have No NFTs</div>
       )}
       <div className="grid xlm:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 py-6 gap-8">
         {value.projectItems.map((nft) => (
