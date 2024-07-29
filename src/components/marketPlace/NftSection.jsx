@@ -1,5 +1,5 @@
 import author from "../../assets/author.png";
-import { nfts } from "../../data/nfts";
+
 import { useContext } from "react";
 import { counterContext } from "../../context/context";
 
@@ -28,7 +28,7 @@ function NftCard({ nft }) {
       className="card border border-secondary-border rounded-xl border-solid p-2"
     >
       <div>
-        <img className="w-full max-h-[350px]" src={nft.img} alt="nft" />
+        <img className="w-full max-h-[350px]" src={nft.image} alt="nft" />
       </div>
       <div className="pt-2 flex flex-col gap-1">
         <span className="text-sm text-[#A1A1AA]">{nft.title}</span>
@@ -46,10 +46,10 @@ function NftCard({ nft }) {
           <span className="text-xs text-[#A1A1AA]">Price</span>
           <div className="text-sm xl:text-base flex gap-1 items-center">
             <div className="flex gap-1">
-              <p>{nft.priceEth}</p>
+              <p>{nft.price_eth}</p>
               <span>ETH</span>
             </div>
-            <span className="text-[#A1A1AA] text-xs">${nft.priceUsd}</span>
+            <span className="text-[#A1A1AA] text-xs">${nft.price_usd}</span>
           </div>
         </div>
       </div>
