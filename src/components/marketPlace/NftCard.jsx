@@ -5,11 +5,9 @@ import author from "../../assets/author.png";
 
 export default function NftCard({ nft }) {
   const value = useContext(counterContext);
+  // console.log(nft.id);
   return (
-    <div
-      key={value.projectItems.id}
-      className="card border border-secondary-border rounded-xl border-solid p-2"
-    >
+    <div className="card border border-secondary-border rounded-xl border-solid p-2">
       <div>
         <img className="w-full max-h-[350px]" src={nft.image} alt="nft" />
       </div>

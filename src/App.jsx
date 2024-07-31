@@ -21,10 +21,10 @@ function App() {
       );
     });
   };
-  const deleteNft = (id) => {
-    axios.delete(`http://localhost:5173/nfts/${id}`);
+  const deleteNft = (userid) => {
+    axios.delete(`http://localhost:5173/nfts/${userid}`);
     const newNfts = projectItems.filter((projectItem) => {
-      return projectItem.id !== id;
+      return projectItem.id !== userid;
     });
     setProjectItems(newNfts);
   };

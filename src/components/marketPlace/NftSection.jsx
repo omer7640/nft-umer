@@ -5,7 +5,7 @@ import { counterContext } from "../../context/context";
 
 export function NftSection() {
   const value = useContext(counterContext);
-  console.log(value);
+  // console.log(value);
   return (
     <>
       {value.projectItems.length === 0 && (
@@ -13,7 +13,7 @@ export function NftSection() {
       )}
       <div className="grid xlm:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 py-6 gap-8">
         {value.projectItems.map((nft) => (
-          <NftCard nft={nft} key={value.projectItems.id} />
+          <NftCard nft={nft} key={nft.id} />
         ))}
       </div>
     </>

@@ -9,7 +9,7 @@ export default function AddNft() {
   const [author, setAuthor] = useState("");
 
   const value = useContext(counterContext);
-  console.log(value);
+  // console.log(value.projectItems[0].title);
 
   const handleSubmit = (e) => {
     e.preventDefault();
