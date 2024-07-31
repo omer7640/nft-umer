@@ -7,7 +7,7 @@ export default function NftCard({ nft }) {
   const value = useContext(counterContext);
   return (
     <div
-      key={value.projectItems.rank}
+      key={value.projectItems.id}
       className="card border border-secondary-border rounded-xl border-solid p-2"
     >
       <div>
@@ -33,6 +33,21 @@ export default function NftCard({ nft }) {
               <span>ETH</span>
             </div>
             <span className="text-[#A1A1AA] text-xs">${nft.price_usd}</span>
+          </div>
+          <div className="btn-div">
+            <button
+              onClick={value.deleteNft}
+              type="button"
+              class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-1.5 me-1 mb-1 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+            >
+              Delete
+            </button>
+            <button
+              type="button"
+              class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-1.5 me-1 mb-1 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+            >
+              Edit
+            </button>
           </div>
         </div>
       </div>

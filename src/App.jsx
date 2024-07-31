@@ -13,12 +13,30 @@ function App() {
       setIsloading(false);
     });
   }, []);
+
+  const addProduct = (newProduct) => {
+    axios.post("http://localhost:5173/nfts", newProduct).then((response) => {
+      setProjectItems((prevProducts) => [...prevProducts, response.data]).catch(
+        (error) => console.error("Error adding product:", error)
+      );
+    });
+  };
+  const deleteNft = (id) => {
+    axios.delete(`http://localhost:5173/nfts/${id}`);
+    const newNfts = projectItems.filter((projectItem) => {
+      return projectItem.id !== id;
+    });
+    setProjectItems(newNfts);
+  };
+
   if (isLoading) {
     return <h2>Loading...</h2>;
   }
   return (
     <>
-      <counterContext.Provider value={{ projectItems, setProjectItems }}>
+      <counterContext.Provider
+        value={{ projectItems, setProjectItems, addProduct, deleteNft }}
+      >
         <RouterProvider router={router} />
       </counterContext.Provider>
     </>
