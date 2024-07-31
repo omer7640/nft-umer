@@ -44,53 +44,6 @@
       "price_eth": 1.2,
       "price_usd": 2880,
       "id": "f732"
-    },
-    {
-      "id": "48d3",
-      "title": " omer",
-      "price": " 244"
-    },
-    {
-      "id": "78e0",
-      "title": " new nft",
-      "price_eth": " 3",
-      "price_usd": " 5003",
-      "Author": " Author 7"
-    },
-    {
-      "id": "50fa",
-      "title": " new ",
-      "price_eth": " ",
-      "price_usd": " ",
-      "author": " "
-    },
-    {
-      "id": "1825",
-      "title": " new nft 2",
-      "price_eth": " 43000",
-      "price_usd": " 255",
-      "author": " Author 8"
-    },
-    {
-      "id": "5055",
-      "title": " ",
-      "price_eth": " ",
-      "price_usd": " ",
-      "author": " "
-    },
-    {
-      "id": "4ca7",
-      "title": " ",
-      "price_eth": " ",
-      "price_usd": " ",
-      "author": " "
-    },
-    {
-      "id": "361a",
-      "title": "bitcoin",
-      "price_eth": "29",
-      "price_usd": "3000",
-      "author": "Author 9"
     }
   ]
 }
