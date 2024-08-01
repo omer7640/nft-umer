@@ -31,16 +31,21 @@ function App() {
     setProjectItems(newNfts);
   };
   const editProduct = (updatedProduct) => {
+    // console.log(updatedProduct);
     axios
       .put(`http://localhost:5173/nfts/${updatedProduct.id}`, updatedProduct)
       .then((response) => {
-        setProjectItems((prevProducts) =>
-          prevProducts.map((product) =>
-            product.id === updatedProduct.id ? response.data : product
-          )
-        );
-        setCurrentProduct(null);
-      });
+     
+        let tempArr = projectItems?.map((item) => {
+          if (item?.id === updatedProduct?.id) {
+            return response?.data;
+          } else {
+            return item;
+          }
+        });
+        setProjectItems(tempArr);
+      })
+      .catch((error) => console.log(error));
   };
 
   const handleEditClick = (product) => {

@@ -202,7 +202,7 @@ export default function AddNft({ edit }) {
                       placeholder="Author"
                       required="please fill"
                     ></input>
-                    <input
+                    {/* <input
                       type="file"
                       value={image}
                       onChange={getFile}
@@ -213,8 +213,8 @@ export default function AddNft({ edit }) {
                       placeholder="Image"
                       required="please fill"
                     >
-                      {/* <img src={image} /> */}
-                    </input>
+                      {/* <img src={image} /> *
+                    </input> */}
                   </div>
                 </div>
                 <button
