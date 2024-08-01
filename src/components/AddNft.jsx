@@ -1,29 +1,82 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useContext } from "react";
 import { counterContext } from "../context/context";
-export default function AddNft() {
+export default function AddNft({ edit }) {
   const [modal, setModal] = useState(false);
   const [title, setTitle] = useState("");
   const [price_usd, setPrice_usd] = useState("");
   const [price_eth, setPrice_eth] = useState("");
   const [author, setAuthor] = useState("");
+  const [image, setImage] = useState("");
 
   const value = useContext(counterContext);
   // console.log(value.projectItems[0].title);
+  // console.log(value.currentProduct);
+
+  useEffect(() => {
+    if (value.currentProduct && edit) {
+      setTitle(value.currentProduct.title);
+      setPrice_usd(value.currentProduct.price_usd);
+      setPrice_eth(value.currentProduct.price_eth);
+      setAuthor(value.currentProduct.author);
+      setImage(value.currentProduct.image);
+    }
+  }, [value.currentProduct]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newProduct = { title, price_eth, price_usd, author };
-    value.addProduct(newProduct);
+    const product = {
+      title,
+      price_eth,
+      price_usd,
+      author,
+      image,
+      id: value.currentProduct?.id,
+    };
+    if (value.currentProduct) {
+      value.editProduct(product);
+      // setTitle("");
+      // setPrice_usd("");
+      // setPrice_eth("");
+      // setAuthor("");
+    } else {
+      value.addProduct(product);
+      // setTitle("");
+      // setPrice_usd("");
+      // setPrice_eth("");
+      // setAuthor("");
+    }
+    // value.addProduct(newProduct);
+
     setTitle("");
     setPrice_usd("");
     setPrice_eth("");
     setAuthor("");
+    setImage("");
+    toggleModal();
   };
 
   const toggleModal = () => {
     setModal(!modal);
   };
+  // useEffect(() => {
+  //   console.log("hey", value);
+  // }, [value]);
+
+  const handleClose = () => {
+    setTitle("");
+    setPrice_usd("");
+    setPrice_eth("");
+    setAuthor("");
+    setImage("");
+    setModal(!modal);
+  };
+
+  // image function
+  const getFile = (e) => {
+    setImage(URL.createObjectURL(e.target.files[0]));
+  };
+
   return (
     <>
       {/* <!-- Modal toggle --> */}
@@ -34,7 +87,8 @@ export default function AddNft() {
         className="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         type="button"
       >
-        Add a Nft
+        {/* Add a Nft */}
+        {edit ? "Edit" : "Add a Nft"}
       </button>
 
       {/* <!-- Main modal --> */}
@@ -51,10 +105,10 @@ export default function AddNft() {
               {/* <!-- Modal header --> */}
               <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                  Create New Product
+                  {edit ? "Edit a Nft" : "Create A new Nft"}
                 </h3>
                 <button
-                  onClick={toggleModal}
+                  onClick={handleClose}
                   type="button"
                   className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
                   data-modal-toggle="crud-modal"
@@ -148,6 +202,19 @@ export default function AddNft() {
                       placeholder="Author"
                       required="please fill"
                     ></input>
+                    <input
+                      type="file"
+                      value={image}
+                      onChange={getFile}
+                      // onChange="readUrl(this)"
+                      accept="Image/*"
+                      rows="2"
+                      className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      placeholder="Image"
+                      required="please fill"
+                    >
+                      {/* <img src={image} /> */}
+                    </input>
                   </div>
                 </div>
                 <button
@@ -166,7 +233,7 @@ export default function AddNft() {
                       clipRule="evenodd"
                     ></path>
                   </svg>
-                  Add new NFT
+                  {value.currentProduct ? "Update" : "Add a New Nft"}
                 </button>
               </form>
             </div>

@@ -3,9 +3,11 @@ import { routes } from "./constants/routes";
 import { counterContext } from "./context/context";
 import { useState, useEffect } from "react";
 import axios from "axios";
+
 function App() {
   const router = createBrowserRouter(routes);
   const [projectItems, setProjectItems] = useState([]);
+  const [currentProduct, setCurrentProduct] = useState(null);
   const [isLoading, setIsloading] = useState(true);
   useEffect(() => {
     axios.get("http://localhost:5173/nfts").then((response) => {
@@ -28,6 +30,22 @@ function App() {
     });
     setProjectItems(newNfts);
   };
+  const editProduct = (updatedProduct) => {
+    axios
+      .put(`http://localhost:5173/nfts/${updatedProduct.id}`, updatedProduct)
+      .then((response) => {
+        setProjectItems((prevProducts) =>
+          prevProducts.map((product) =>
+            product.id === updatedProduct.id ? response.data : product
+          )
+        );
+        setCurrentProduct(null);
+      });
+  };
+
+  const handleEditClick = (product) => {
+    setCurrentProduct(product);
+  };
 
   if (isLoading) {
     return <h2>Loading...</h2>;
@@ -35,7 +53,16 @@ function App() {
   return (
     <>
       <counterContext.Provider
-        value={{ projectItems, setProjectItems, addProduct, deleteNft }}
+        value={{
+          projectItems,
+          setProjectItems,
+          addProduct,
+          deleteNft,
+          editProduct,
+          currentProduct,
+          handleEditClick,
+          setCurrentProduct,
+        }}
       >
         <RouterProvider router={router} />
       </counterContext.Provider>
