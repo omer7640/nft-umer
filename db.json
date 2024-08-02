@@ -35,25 +35,12 @@
       "id": "5689"
     },
     {
-      "title": "omer23",
-      "price_eth": "22",
-      "price_usd": "444444444",
+      "id": "8d26",
+      "title": "bitcoin",
+      "price_eth": "50",
+      "price_usd": "6700",
       "author": "Author 5",
-      "id": "7b9a"
-    },
-    {
-      "title": "444",
-      "price_eth": "90",
-      "price_usd": "4333",
-      "author": "Author 7",
-      "id": "b8b6"
-    },
-    {
-      "title": "btn5",
-      "price_eth": "90",
-      "price_usd": "4333",
-      "author": "Author 7",
-      "id": "a308"
+      "image": "blob:http://localhost:3000/3c4af97e-c4f2-4d20-a6d4-4d62435ed98d"
     }
   ]
 }

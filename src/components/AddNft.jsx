@@ -33,13 +33,17 @@ export default function AddNft({ edit }) {
       image,
       id: value.currentProduct?.id,
     };
-    if (value.currentProduct) {
+    if (value.currentProduct && edit) {
+      console.log("hey1===", value.currentProduct, product);
       value.editProduct(product);
       // setTitle("");
       // setPrice_usd("");
       // setPrice_eth("");
       // setAuthor("");
     } else {
+      console.log("hey2===", product);
+      // setTitle("");
+
       value.addProduct(product);
       // setTitle("");
       // setPrice_usd("");
@@ -73,7 +77,9 @@ export default function AddNft({ edit }) {
   };
 
   // image function
-  const getFile = (e) => {
+  useEffect(() => {}, []);
+  const handleImage = (e) => {
+    // console.log(e.target.files);
     setImage(URL.createObjectURL(e.target.files[0]));
   };
 
@@ -202,19 +208,18 @@ export default function AddNft({ edit }) {
                       placeholder="Author"
                       required="please fill"
                     ></input>
-                    {/* <input
+                    <input
                       type="file"
-                      value={image}
-                      onChange={getFile}
+                      // value={image}
                       // onChange="readUrl(this)"
+                      onChange={handleImage}
                       accept="Image/*"
                       rows="2"
                       className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       placeholder="Image"
                       required="please fill"
-                    >
-                      {/* <img src={image} /> *
-                    </input> */}
+                    ></input>
+                    <img src={image} />
                   </div>
                 </div>
                 <button
@@ -233,7 +238,7 @@ export default function AddNft({ edit }) {
                       clipRule="evenodd"
                     ></path>
                   </svg>
-                  {value.currentProduct ? "Update" : "Add a New Nft"}
+                  {value.currentProduct && edit ? "Update" : "Add a New Nft"}
                 </button>
               </form>
             </div>
