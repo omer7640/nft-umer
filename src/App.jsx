@@ -35,15 +35,14 @@ function App() {
     axios
       .put(`http://localhost:5173/nfts/${updatedProduct.id}`, updatedProduct)
       .then((response) => {
-     
-        let tempArr = projectItems?.map((item) => {
+        let updatedNft = projectItems?.map((item) => {
           if (item?.id === updatedProduct?.id) {
             return response?.data;
           } else {
             return item;
           }
         });
-        setProjectItems(tempArr);
+        setProjectItems(updatedNft);
       })
       .catch((error) => console.log(error));
   };
