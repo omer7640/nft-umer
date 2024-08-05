@@ -9,6 +9,9 @@ function App() {
   const [projectItems, setProjectItems] = useState([]);
   const [currentProduct, setCurrentProduct] = useState(null);
   const [isLoading, setIsloading] = useState(true);
+  const [search, setSearch] = useState("");
+  // const [query, setQuery] = useState("");
+
   useEffect(() => {
     axios.get("http://localhost:5173/nfts").then((response) => {
       setProjectItems(response.data);
@@ -66,6 +69,10 @@ function App() {
           currentProduct,
           handleEditClick,
           setCurrentProduct,
+          search,
+          setSearch,
+          // query,
+          // setQuery,
         }}
       >
         <RouterProvider router={router} />

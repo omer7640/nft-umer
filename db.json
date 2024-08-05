@@ -33,14 +33,6 @@
       "price_eth": 2,
       "price_usd": 4800,
       "id": "5689"
-    },
-    {
-      "id": "8d26",
-      "title": "bitcoin",
-      "price_eth": "50",
-      "price_usd": "6700",
-      "author": "Author 5",
-      "image": "blob:http://localhost:3000/3c4af97e-c4f2-4d20-a6d4-4d62435ed98d"
     }
   ]
 }

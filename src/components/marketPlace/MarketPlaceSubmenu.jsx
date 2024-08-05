@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Cross,
   Diamond,
@@ -8,13 +9,24 @@ import {
 } from "../../assets/Icons";
 import AddNft from "../AddNft";
 import { Button } from "../shared/Button";
+import { useContext } from "react";
+import { counterContext } from "../../context/context";
 
 export function MarketPlaceSubmenu() {
+  // const [search, setSearch] = useState("");
+  const value = useContext(counterContext);
+  // console.log(query);
   return (
     <div className="py-6 flex md:gap-3 justify-between text-sm">
       <div className="flex bg-zinc-800 rounded-xl items-center p-3 gap-1 w-full">
         <Search />
-        <input type="search" placeholder="Search" className="bg-zinc-800" />
+        <input
+          value={value.search}
+          onChange={(e) => value.setSearch(e.target.value)}
+          type="text"
+          placeholder="Search"
+          className="bg-zinc-800"
+        />
       </div>
       <div className="flex gap-3">
         <Button

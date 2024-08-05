@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useContext } from "react";
 import { counterContext } from "../context/context";
+import axios from "axios";
+
 export default function AddNft({ edit }) {
   const [modal, setModal] = useState(false);
   const [title, setTitle] = useState("");
@@ -36,19 +38,11 @@ export default function AddNft({ edit }) {
     if (value.currentProduct && edit) {
       console.log("hey1===", value.currentProduct, product);
       value.editProduct(product);
-      // setTitle("");
-      // setPrice_usd("");
-      // setPrice_eth("");
-      // setAuthor("");
     } else {
-      console.log("hey2===", product);
+      // console.log("hey2===", product);
       // setTitle("");
 
       value.addProduct(product);
-      // setTitle("");
-      // setPrice_usd("");
-      // setPrice_eth("");
-      // setAuthor("");
     }
     // value.addProduct(newProduct);
 
@@ -77,17 +71,25 @@ export default function AddNft({ edit }) {
   };
 
   // image function
-  useEffect(() => {}, []);
+  // useEffect(() => {}, []);
   const handleImage = (e) => {
     // console.log(e.target.files);
     setImage(URL.createObjectURL(e.target.files[0]));
   };
-
+  // const handleApi = () => {
+  //   let formData = new formData();
+  //   formData.append(`image`, image);
+  //   axios
+  //     .post(`http://localhost:5173/nfts`, formData)
+  //     .then((response) => console.log(response));
+  // };
   return (
     <>
       {/* <!-- Modal toggle --> */}
       <button
-        onClick={toggleModal}
+        onClick={() => {
+          toggleModal();
+        }}
         data-modal-target="crud-modal"
         data-modal-toggle="crud-modal"
         className="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
@@ -212,6 +214,7 @@ export default function AddNft({ edit }) {
                       type="file"
                       // value={image}
                       // onChange="readUrl(this)"
+                      name="image"
                       onChange={handleImage}
                       accept="Image/*"
                       rows="2"
